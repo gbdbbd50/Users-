@@ -1,0 +1,88 @@
+
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "A micro-task available for users to complete.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "requirements": { "type": "string" },
+        "reward": { "type": "number" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "advertiserId": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "ACTIVE", "PAUSED", "REJECTED", "CANCELLED", "COMPLETED"] },
+        "quantity": { "type": "number" },
+        "completedSlots": { "type": "number" },
+        "totalCost": { "type": "number" },
+        "link": { "type": "string" },
+        "platform": { "type": "string" }
+      }
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "A user's proof of task completion.",
+      "type": "object",
+      "properties": {
+        "taskId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "description": { "type": "string" },
+        "proofImageUrl": { "type": "string", "description": "URL to the uploaded screenshot proof." },
+        "status": { "type": "string", "enum": ["PENDING", "APPROVED", "REJECTED", "DISPUTED"] },
+        "rating": { "type": "number", "description": "Rating given by advertiser (1-5)." },
+        "feedback": { "type": "string", "description": "Optional feedback from advertiser." },
+        "disputeReason": { "type": "string", "description": "Reason provided by earner when appealing." },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "SupportMessage": {
+      "title": "Support Message",
+      "description": "A single message in a support chat session.",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "isAdmin": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "A global pop-up message broadcast by developers.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "buttons": { 
+          "type": "array", 
+          "items": { 
+            "type": "object", 
+            "properties": {
+              "text": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          } 
+        },
+        "targetRoles": { "type": "array", "items": { "type": "string" } },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["email", "google", "phone"]
+  },
+  "firestore": {
+    "/tasks/{taskId}": { "schema": "Task" },
+    "/submissions/{submissionId}": { "schema": "Submission" },
+    "/users/{userId}": { "schema": "UserProfile" },
+    "/settings/global": { "schema": "GlobalSettings" },
+    "/support_chats/{userId}/messages/{messageId}": { "schema": "SupportMessage" },
+    "/announcements/{announcementId}": { "schema": "Announcement" }
+  }
+}

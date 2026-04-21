@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "data-entry",
+      "description": "Person working on a spreadsheet",
+      "imageUrl": "https://picsum.photos/seed/task1/600/400",
+      "imageHint": "spreadsheet laptop"
+    },
+    {
+      "id": "survey",
+      "description": "Digital survey on a tablet",
+      "imageUrl": "https://picsum.photos/seed/task2/600/400",
+      "imageHint": "survey tablet"
+    },
+    {
+      "id": "content-writing",
+      "description": "Notebook and pen on a desk",
+      "imageUrl": "https://picsum.photos/seed/task3/600/400",
+      "imageHint": "writing notebook"
+    },
+    {
+      "id": "image-labeling",
+      "description": "Multiple images being organized",
+      "imageUrl": "https://picsum.photos/seed/task4/600/400",
+      "imageHint": "gallery organization"
+    }
+  ]
+}
